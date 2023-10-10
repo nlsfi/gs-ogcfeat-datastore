@@ -7,11 +7,11 @@
 <beans>
 	<bean id="mySqlExtension"
 		class="org.geoserver.platform.ModuleStatusImpl">
-		<property name="module" value="gt-ogcfeat" />
+		<property name="module" value="gs-ogcfeat-datastore" />
 		<property name="name" value="OGCFeat Extension" />
 		<property name="component" value="OGCFeat extension" />
 		<property name="documentation"
-			value="data/database/ogcfeat.html" />
+			value="data/database/gs-ogcfeat-datastore.html" />
 		<property name="available" value="true" />
 		<property name="enabled" value="true" />
 	</bean>
