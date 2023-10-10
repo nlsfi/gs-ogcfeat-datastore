@@ -34,6 +34,7 @@ Issues (Features)
 - (x) Confirm compatibility with Geoserver AXIS ORDER 
 - (x) Add GitHub actions 
 - (x) refactor to org.geotools.api interfaces and https://github.com/geotools/geotools/wiki/Remove-OpenGIS 
+- (x) Reduce logging noise
 
 Installation 
 - Copy target/gs-ogcfeat-datastore-2.23.2.jar and swagger-models-2.2.16.jar to geoserver/WEB-INF/lib 
