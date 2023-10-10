@@ -20,6 +20,14 @@
 	<dependencyManagement>
 
 	</dependencyManagement>
+	   <!-- For GeoTools -->
+	<repositories>
+           <repository>
+             <id>osgeo</id>
+             <name>OSGeo repository</name>
+             <url>https://repo.osgeo.org/repository/release/</url>
+           </repository>
+       </repository>
 	<dependencies>
 		<dependency>
 			<groupId>javax.servlet</groupId>
