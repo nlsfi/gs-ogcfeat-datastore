@@ -33,7 +33,7 @@ Issues (Features)
 - (x) Add some form of limit support to avoid fetch-all-of-database queries
 - (x) Add paging support with GeoJSONReader to complement limit  support
 - (x) Confirm compatibility with Geoserver AXIS ORDER 
-- (x) Add GitHub actions 
+- (/) Add GitHub actions - JDK11 atm
 - (x) refactor to org.geotools.api interfaces and https://github.com/geotools/geotools/wiki/Remove-OpenGIS 
 - (x) JDK17+ and other compatibility issues https://github.com/geoserver/geoserver/wiki/Jakarta-EE
 
