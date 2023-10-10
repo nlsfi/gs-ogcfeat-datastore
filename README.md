@@ -19,8 +19,8 @@ Restrictions
 - No paging support yet - reads features up to default backend limit 
 
 Features
-- Initializes datastore with backend OGCFeat service metadata (conformance,collections,schema)
-- Creates featuretypes with backend OGCFeat schema responses
+- Initializes datastore with data from backend OGCFeat service metadata links (conformance,collections,schema)
+- Constructs featuretypes with metadata from backend OGCFeat schema responses
 - Bbox filtering is based on backend OGCFeat service bbox filtering 
 - Projection support is based on backend OGCFeat service CRS support
 
