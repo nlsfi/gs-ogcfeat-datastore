@@ -7,8 +7,8 @@ gs-ogcfeat-datastore is a Geoserver extension that can be used to
 publish collections from from a OGCFeat service
 
 Status
-- Initial version - Work-in-some-Progress
-- available as-is 
+- Initial version - Work-in-Progress
+- available As-Is 
 
 Geoserver / Geotools Version 
 - gs 2.23.2
@@ -24,8 +24,8 @@ Features
 - Projection support is based on backend OGCFeat service CRS support
 
 Issues (bugs)
-- (x) Initial Basic Auth backends fails on fetching landing page with Apache HttpClient
--- /conformance /collections etc work just fine
+- (x) Storing a Basic Auth authorized backend fails in outer Geoserver code?
+-- landing page, /conformance /collections schema etc work just fine after
 - (x) fetches only first page of items up to default limit at the moment
 
 Issues (Features)
