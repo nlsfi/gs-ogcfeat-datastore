@@ -16,6 +16,7 @@ Geoserver / Geotools Version
 
 Restrictions
 - Only BBOX Filtering at the moment
+- No paging support yet - reads features up to default backend limit 
 
 Features
 - Initializes datastore with backend OGCFeat service metadata (conformance,collections,schema)
