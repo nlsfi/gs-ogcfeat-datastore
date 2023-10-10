@@ -35,6 +35,8 @@ Issues (Features)
 - (x) Confirm compatibility with Geoserver AXIS ORDER 
 - (x) Add GitHub actions 
 - (x) refactor to org.geotools.api interfaces and https://github.com/geotools/geotools/wiki/Remove-OpenGIS 
+- (x) JDK17+ and other compatibility issues https://github.com/geoserver/geoserver/wiki/Jakarta-EE
+
 - (x) Reduce logging noise
 
 Installation 
