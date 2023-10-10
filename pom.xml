@@ -27,7 +27,7 @@
              <name>OSGeo repository</name>
              <url>https://repo.osgeo.org/repository/release/</url>
            </repository>
-       </repository>
+       </repositories>
 	<dependencies>
 		<dependency>
 			<groupId>javax.servlet</groupId>
