@@ -3,7 +3,7 @@
 gs-ogcfeat-datastore
 =================
 
-gs-ogcfeat-datastore is a Geoserver extension that can be used to publish collections from an OGCFeat service
+gs-ogcfeat-datastore is a Geoserver DataStore extension that can be used to publish cascaded collections from a backend OGCFeat service
 
 Status
 - Initial version - Work-in-Progress
