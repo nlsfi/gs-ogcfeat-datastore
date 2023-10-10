@@ -26,6 +26,7 @@ Features
 Issues (bugs)
 - (x) Initial Basic Auth backends fails on fetching landing page with Apache HttpClient
 -- /conformance /collections etc work just fine
+- (x) fetches only first page of items up to default limit at the moment
 
 Issues (Features)
 - (x) Add some form of limit support to avoid fetch-all-of-database queries
