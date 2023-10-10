@@ -3,8 +3,7 @@
 gs-ogcfeat-datastore
 =================
 
-gs-ogcfeat-datastore is a Geoserver extension that can be used to 
-publish collections from from a OGCFeat service
+gs-ogcfeat-datastore is a Geoserver extension that can be used to publish collections from an OGCFeat service
 
 Status
 - Initial version - Work-in-Progress
@@ -14,15 +13,16 @@ Geoserver / Geotools Version
 - gs 2.23.2
 - gt 29.2
 
-Restrictions
-- Only BBOX Filtering at the moment
-- No paging support yet - reads features up to default backend limit 
-
 Features
+- Supports publishing OGCFeat collections from an OGCFeat service
 - Initializes datastore with data from backend OGCFeat service metadata links (conformance,collections,schema)
 - Constructs featuretypes with metadata from backend OGCFeat schema responses
 - Bbox filtering is based on backend OGCFeat service bbox filtering 
 - Projection support is based on backend OGCFeat service CRS support
+
+Implementation status
+- Only BBOX Filter is supported at the moment
+- No paging support yet - reads features up to default backend limit 
 
 Issues (bugs)
 - (x) Storing a Basic Auth authorized backend fails in outer Geoserver code?
