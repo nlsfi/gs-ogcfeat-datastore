@@ -6,7 +6,7 @@ gs-ogcfeat-datastore
 gs-ogcfeat-datastore is a Geoserver DataStore extension that can be used to publish cascaded collections from a backend OGCFeat service 
 as WMS, WMTS or other Geoserver services.
 
-Status
+Module Status
 - Initial version - Work-in-Progress
 - available As-Is 
 
@@ -25,15 +25,15 @@ Implementation status
 - Only BBOX Filter is supported at the moment
 - No paging support yet - reads features up to default backend limit 
 
-Issues (bugs)
+Issues and Limitations
 - (x) Storing a Basic Auth authorized backend fails in outer Geoserver code?
 -- landing page, /conformance /collections schema etc work just fine after
 - (x) fetches only first page of items up to default limit at the moment
 
-Issues (Features)
+Missing Features
 - (x) Add some form of limit support to avoid fetch-all-of-database queries
 - (x) Add paging support with GeoJSONReader to complement limit  support
-- (x) Confirm compatibility with Geoserver AXIS ORDER 
+- (x) Confirm compatibility with Geoserver AXIS ORDER and reprojections
 - (/) Add GitHub actions - JDK11 atm
 - (x) refactor to org.geotools.api interfaces and https://github.com/geotools/geotools/wiki/Remove-OpenGIS 
 - (x) JDK17+ and other compatibility issues https://github.com/geoserver/geoserver/wiki/Jakarta-EE
