@@ -180,7 +180,7 @@ public class OGCFeatCatalogue {
 		} finally {
 			response.dispose();
 		}
-		return Optional.of(t);
+		return Optional.ofNullable(t);
 	}
 
 	public OGCFeatBackendClient getClient() {
