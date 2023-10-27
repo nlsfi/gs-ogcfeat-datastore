@@ -34,6 +34,11 @@ public class OGCFeatDataStoreFactory implements DataStoreFactorySpi, DataAccessF
 			"OGCFeat backend timeout in milliseconds", false);
 	public static final Param POOLMAX_PARAM = new Param("poolmax", Integer.class, "OGCFeat backend pool size", false);
 
+	public static final Param FEAT_LIMIT_PARAM = new Param("featlimit", Integer.class,
+			"OGCFeat features batch size (limit, default 1000)", false);
+	public static final Param FEAT_PAGING_MAX_PARAM = new Param("batchmax", Integer.class,
+			"OGCFeat features max total pages (default 1)", false);
+
 	static {
 		parameterInfos.add(NS_PARAM);
 		parameterInfos.add(URL_PARAM);
@@ -41,6 +46,8 @@ public class OGCFeatDataStoreFactory implements DataStoreFactorySpi, DataAccessF
 		parameterInfos.add(PASSWORD_PARAM);
 		parameterInfos.add(TIMEOUT_PARAM);
 		parameterInfos.add(POOLMAX_PARAM);
+		parameterInfos.add(FEAT_PAGING_MAX_PARAM);
+		parameterInfos.add(FEAT_LIMIT_PARAM);
 	}
 
 	@Override
@@ -65,10 +72,19 @@ public class OGCFeatDataStoreFactory implements DataStoreFactorySpi, DataAccessF
 			poolMax = (int) POOLMAX_PARAM.lookUp(params);
 		}
 
+		Integer limitMax = 1000;
+		if (FEAT_LIMIT_PARAM.lookUp(params) != null) {
+			limitMax = (int) FEAT_LIMIT_PARAM.lookUp(params);
+		}
+		Integer pagingMax = 1;
+		if (FEAT_PAGING_MAX_PARAM.lookUp(params) != null) {
+			pagingMax = (int) FEAT_PAGING_MAX_PARAM.lookUp(params);
+		}
+
 		OGCFeatDataStore ds = null;
 
 		try {
-			ds = new OGCFeatDataStore(nsValue, urlValue, user, pass, poolMax, timeoutMillis);
+			ds = new OGCFeatDataStore(nsValue, urlValue, user, pass, poolMax, timeoutMillis, limitMax, pagingMax);
 			LOGGER.info("Created " + ds);
 		} catch (MalformedURLException e) {
 			LOGGER.warning(e.toString());

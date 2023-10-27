@@ -49,6 +49,8 @@ public class OGCFeatBackendClient implements HTTPConnectionPooling, HTTPProxy {
 	private String acceptHeaderValue;
 	private String username;
 	private String password;
+	
+	
 
 	public OGCFeatBackendClient(String user, String pass, int poolMax, int timeoutInMs, String accept) {
 		acceptHeaderValue = accept;

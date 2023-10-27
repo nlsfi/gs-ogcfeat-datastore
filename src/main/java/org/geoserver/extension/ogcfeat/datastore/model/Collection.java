@@ -2,6 +2,9 @@ package org.geoserver.extension.ogcfeat.datastore.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Collection {
 	private String id;
 	private String title;
