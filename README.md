@@ -15,8 +15,8 @@ Geoserver / Geotools Version
 - gt 29.2
 
 License Issues
-- (x) Apply Geoserver and Geotools compatible license 
-- Repository contains some original as well as some copy-paste-modified code from both GeoTools and Geoserver
+- (x) Apply Geoserver and Geotools compatible license: gs GPL2 , gt LGPL ?
+- Repository contains  original code as well as some copy-paste-modified code from both GeoTools and Geoserver
 
 Features
 - Supports publishing OGCFeat collections from an OGCFeat service
