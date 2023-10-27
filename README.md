@@ -33,7 +33,7 @@ Issues and Limitations
 - (x) Storing a Basic Auth authorized backend fails in outer Geoserver code?
 -- landing page, /conformance /collections schema etc work just fine after
 
-Missing Features
+To-do with some recent changes
 - (/) fetches only first page of items up to default limit at the moment
 - (/) Add some form of limit support to avoid fetch-all-of-database queries
 - (/) Add paging support with a custom GeoJSONReader to complement limit  support
