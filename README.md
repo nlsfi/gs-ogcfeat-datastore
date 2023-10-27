@@ -48,4 +48,5 @@ Installation
 
 Usage
 - add an OGCFeat datastore and publish layers as usual
+- Datastore URL is the OGCFeat service landing page 
 
