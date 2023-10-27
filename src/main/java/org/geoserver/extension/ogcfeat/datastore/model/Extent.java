@@ -1,5 +1,8 @@
 package org.geoserver.extension.ogcfeat.datastore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Extent {
 	private SpatialExtent spatial;
 	private TemporalExtent temporal;

@@ -39,13 +39,18 @@ public class OGCFeatFeatureSource extends ContentFeatureSource {
 	private Collection collection;
 	private DefaultResourceInfo resourceInfo;
 
+	private int limit;
+	private int pages;
+
 	public Collection getCollection() {
 		return collection;
 	}
 
 	public OGCFeatFeatureSource(OGCFeatCatalogue catalogue, ContentEntry entry, Query query, Collection collection,
-			SimpleFeatureType schema) throws NoSuchAuthorityCodeException, FactoryException {
+			SimpleFeatureType schema, int limit, int pages) throws NoSuchAuthorityCodeException, FactoryException {
 		super(entry, query);
+		this.limit = limit;
+		this.pages = pages;
 		this.schema = schema;
 		this.catalogue = catalogue;
 		this.collection = collection;
@@ -171,10 +176,13 @@ public class OGCFeatFeatureSource extends ContentFeatureSource {
 			uriBuilder.addParameter("crs", crsParamValue);
 
 			if (!query.isMaxFeaturesUnlimited()) {
-
-				String limitParamValue = Integer.toString(query.getMaxFeatures(), 10);
+				int limitValue = Math.min(query.getMaxFeatures(), limit);
+				String limitParamValue = Integer.toString(limitValue, 10);
 
 				uriBuilder.addParameter("limit", limitParamValue);
+			} else {
+				uriBuilder.addParameter("limit", Integer.toString(limit, 10));
+
 			}
 
 			URI uri = uriBuilder.build();
@@ -182,10 +190,9 @@ public class OGCFeatFeatureSource extends ContentFeatureSource {
 		} catch (URISyntaxException e) {
 			throw new IOException(e);
 		}
-		// GET items
+		
 		LOGGER.info(collection.getId() + " items URL\n" + url);
-		HTTPResponse response = catalogue.getClient().get(url);
-		return new OGCFeatureReader(buildFeatureType(), response);
+		return new OGCFeatPagingCollectionItemsReader(catalogue,buildFeatureType(), url, pages);
 	}
 
 	@Override

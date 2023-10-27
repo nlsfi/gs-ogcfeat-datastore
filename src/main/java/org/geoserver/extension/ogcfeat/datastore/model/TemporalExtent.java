@@ -3,6 +3,9 @@ package org.geoserver.extension.ogcfeat.datastore.model;
 import java.time.Instant;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TemporalExtent {
 
 	private List<Instant[]> interval;

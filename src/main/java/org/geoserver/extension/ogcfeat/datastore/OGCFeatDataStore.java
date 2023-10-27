@@ -32,6 +32,8 @@ public class OGCFeatDataStore extends ContentDataStore {
 	protected URL namespace;
 	protected String username;
 	protected String password;
+	protected int limit;
+	protected int pages;
 
 	protected OGCFeatCatalogue catalogue;
 
@@ -47,9 +49,11 @@ public class OGCFeatDataStore extends ContentDataStore {
 
 	}
 
-	public OGCFeatDataStore(String ns, String url, String user, String pass, Integer poolMax, Integer timeoutMillis)
-			throws MalformedURLException {
+	public OGCFeatDataStore(String ns, String url, String user, String pass, Integer poolMax, Integer timeoutMillis,
+			Integer limitMax, Integer pagingMax) throws MalformedURLException {
 		client = new OGCFeatBackendClient(user, pass, poolMax, timeoutMillis, OGCFeatCatalogue.ACCEPTS);
+		limit = limitMax;
+		pages = pagingMax;
 		LOGGER.info("CREATING DS " + ns + " Url " + url + " CLIENT " + client);
 		namespace = new URL(ns);
 		catalogue = new OGCFeatCatalogue(url, client);
@@ -82,7 +86,7 @@ public class OGCFeatDataStore extends ContentDataStore {
 		SimpleFeatureType featureType = OGCFeatSchemaUtils.buildFeatureType(collection, schemaRef, namespace);
 		OGCFeatFeatureSource featureSource;
 		try {
-			featureSource = new OGCFeatFeatureSource(catalogue, entry, new Query(), collection, featureType);
+			featureSource = new OGCFeatFeatureSource(catalogue, entry, new Query(), collection, featureType, limit, pages);
 		} catch (FactoryException e) {
 			LOGGER.warning(e.toString());
 			throw new IOException(e);
