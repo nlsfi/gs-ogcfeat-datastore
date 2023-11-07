@@ -21,7 +21,7 @@ License
 - GeoServer license/geoserver/LICENSE.md
 
 Features
-- Supports publishing OGCFeat collections from an backend OGCFeat service
+- Supports publishing OGCFeat collections from a cascaded OGCFeat service
 - Initializes datastore with data from backend OGCFeat service metadata links (landing page, conformance,collections,schema)
 - Backend OGCFeat service must support Landing page, conformance,collections,schema are requirements for this extension to work properly
 - Constructs featuretypes with metadata from backend OGCFeat schema responses
