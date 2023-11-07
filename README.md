@@ -15,7 +15,7 @@ Geoserver / Geotools Version
 - gt 29.2
 
 License
-- This Repository contains  original code - see LICENSE.md
+- This Repository contains  original code - see LICENSE
 - This repository contains modified and derived code from both GeoTools and Geoserver
 - GeoTools license license/geotools/LICENSE.md
 - GeoServer license/geoserver/LICENSE.md
