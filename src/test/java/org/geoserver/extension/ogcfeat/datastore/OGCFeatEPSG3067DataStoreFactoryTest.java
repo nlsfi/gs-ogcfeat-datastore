@@ -29,7 +29,7 @@ public class OGCFeatEPSG3067DataStoreFactoryTest {
 		String responseCRS = "http://www.opengis.net/def/crs/EPSG/0/3067";
 
 		String url = "https://avoin-paikkatieto.maanmittauslaitos.fi/maastotiedot/features/v1";
-		String user = "7cd2ddae-9f2e-481c-99d0-404e7bc7a0b2";
+		String user = "<INSERT-YOUR-API-KEY>";
 
 		OGCFeatDataStoreFactory factory = new OGCFeatDataStoreFactory();
 
