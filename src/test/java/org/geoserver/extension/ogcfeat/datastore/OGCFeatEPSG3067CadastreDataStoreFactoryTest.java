@@ -23,8 +23,6 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 public class OGCFeatEPSG3067CadastreDataStoreFactoryTest {
 
-	// https://avoin-paikkatieto.maanmittauslaitos.fi/kiinteisto-avoin/simple-features/v3/collections/MaaraalanOsanSijaintitiedot/schema?api-key=7cd2ddae-9f2e-481c-99d0-404e7bc7a0b2&
-	// MaaraalanOsanSijaintitiedot has complex geometry schema oneOf ...
 
 	public static void main(String[] args)
 			throws MalformedURLException, IOException, NoSuchAuthorityCodeException, FactoryException {
@@ -33,7 +31,7 @@ public class OGCFeatEPSG3067CadastreDataStoreFactoryTest {
 		String responseCRS = "http://www.opengis.net/def/crs/EPSG/0/3067";
 
 		String url = "https://avoin-paikkatieto.maanmittauslaitos.fi/kiinteisto-avoin/simple-features/v3";
-		String user = "7cd2ddae-9f2e-481c-99d0-404e7bc7a0b2";
+		String user = "<INSERT-YOUR-API-KEY>";
 
 		OGCFeatDataStoreFactory factory = new OGCFeatDataStoreFactory();
 
