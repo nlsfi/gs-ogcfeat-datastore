@@ -34,7 +34,7 @@ Requirements for backend OGCFeat service
 - OGC API - Features - Part 1: Core
 - OGC API - Features - Part 2: Coordinate Reference Systems by Reference
 - OGC API - Features - Part 3: Filtering and Common Query Language (CQL2)
-- OGC API - Features - Part 5: Schemas - *partial Schema support for collections is required* 
+- OGC API - Features - Part 5: Schemas - draft *partial Schema support for collections is required* 
 
 Implementation status
 - Supports BBOX only Simple Filter
