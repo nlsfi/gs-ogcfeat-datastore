@@ -15,10 +15,13 @@ import org.geoserver.extension.ogcfeat.datastore.model.Collection;
 import org.geoserver.extension.ogcfeat.datastore.model.Link;
 import org.geotools.data.DefaultResourceInfo;
 import org.geotools.data.FeatureReader;
+import org.geotools.data.FilteringFeatureReader;
 import org.geotools.data.Query;
 import org.geotools.data.ResourceInfo;
 import org.geotools.data.store.ContentEntry;
 import org.geotools.data.store.ContentFeatureSource;
+import org.geotools.filter.visitor.DefaultFilterVisitor;
+import org.geotools.filter.visitor.FilterVisitorSupport;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.http.HTTPResponse;
 import org.geotools.referencing.CRS;
@@ -26,10 +29,55 @@ import org.geotools.util.logging.Logging;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.spatial.BBOX;
+import org.opengis.filter.spatial.Beyond;
+import org.opengis.filter.spatial.BinarySpatialOperator;
+import org.opengis.filter.spatial.Contains;
+import org.opengis.filter.spatial.Crosses;
+import org.opengis.filter.spatial.DWithin;
+import org.opengis.filter.spatial.Disjoint;
+import org.opengis.filter.spatial.Equals;
+import org.opengis.filter.spatial.Intersects;
+import org.opengis.filter.spatial.Overlaps;
+import org.opengis.filter.spatial.Touches;
+import org.opengis.filter.spatial.Within;
+import org.opengis.filter.temporal.After;
+import org.opengis.filter.temporal.AnyInteracts;
+import org.opengis.filter.temporal.Before;
+import org.opengis.filter.temporal.Begins;
+import org.opengis.filter.temporal.BegunBy;
+import org.opengis.filter.temporal.BinaryTemporalOperator;
+import org.opengis.filter.temporal.During;
+import org.opengis.filter.temporal.EndedBy;
+import org.opengis.filter.temporal.Ends;
+import org.opengis.filter.temporal.Meets;
+import org.opengis.filter.temporal.MetBy;
+import org.opengis.filter.temporal.OverlappedBy;
+import org.opengis.filter.temporal.TContains;
+import org.opengis.filter.temporal.TEquals;
+import org.opengis.filter.temporal.TOverlaps;
 import org.opengis.geometry.BoundingBox;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.filter.And;
+import org.opengis.filter.BinaryComparisonOperator;
+import org.opengis.filter.BinaryLogicOperator;
+import org.opengis.filter.ExcludeFilter;
+import org.opengis.filter.FilterVisitor;
+import org.opengis.filter.Id;
+import org.opengis.filter.IncludeFilter;
+import org.opengis.filter.Not;
+import org.opengis.filter.Or;
+import org.opengis.filter.PropertyIsBetween;
+import org.opengis.filter.PropertyIsEqualTo;
+import org.opengis.filter.PropertyIsGreaterThan;
+import org.opengis.filter.PropertyIsGreaterThanOrEqualTo;
+import org.opengis.filter.PropertyIsLessThan;
+import org.opengis.filter.PropertyIsLessThanOrEqualTo;
+import org.opengis.filter.PropertyIsLike;
+import org.opengis.filter.PropertyIsNil;
+import org.opengis.filter.PropertyIsNotEqualTo;
+import org.opengis.filter.PropertyIsNull;
 
 public class OGCFeatFeatureSource extends ContentFeatureSource {
 
@@ -100,21 +148,41 @@ public class OGCFeatFeatureSource extends ContentFeatureSource {
 		return true;
 	}
 
+	class BBOXFilterInfo extends DefaultFilterVisitor {
+		public BBOX bbox;
+		public boolean isSimple = false;
+
+		@Override
+		public Object visit(BBOX filter, Object data) {
+			bbox = filter;
+			return super.visit(filter, data);
+		}
+	}
+
 	@Override
 	protected FeatureReader<SimpleFeatureType, SimpleFeature> getReaderInternal(Query query) throws IOException {
 		// LET's not support empty queries ATM
 		// LET's support only BBOX ATM
 
-		if (!(query.getFilter() instanceof BBOX)) {
-			throw new IOException("NYI");
-		}
+		LOGGER.info(query.getFilter().toString());
+
+		BBOXFilterInfo bboxInfo = new BBOXFilterInfo();
+
+		bboxInfo.isSimple = query.getFilter() instanceof BBOX;
 
 		LOGGER.info("OGCFeat " + query.toString());
 
-		// BBOX and BBOX CRS
-		final BBOX bboxFilter = (BBOX) query.getFilter();
+		if (bboxInfo.isSimple) {
+			bboxInfo.bbox = (BBOX) query.getFilter();
+		} else {
+			query.getFilter().accept(bboxInfo, bboxInfo);
+		}
 
-		CoordinateReferenceSystem bboxCrs = bboxFilter.getBounds().getCoordinateReferenceSystem();
+		if (bboxInfo.bbox == null) {
+			throw new IOException("OGCFeat requires minimum a BBOX Filter");
+		}
+
+		CoordinateReferenceSystem bboxCrs = bboxInfo.bbox.getBounds().getCoordinateReferenceSystem();
 		if (bboxCrs != null && !isCrsCollectionSupported(bboxCrs)) {
 			throw new IOException("Invalid Filter (BBOX) CRS");
 		}
@@ -146,7 +214,7 @@ public class OGCFeatFeatureSource extends ContentFeatureSource {
 		final NumberFormat nf = NumberFormat.getInstance(Locale.US);
 		nf.setGroupingUsed(false);
 
-		final BoundingBox bounds = bboxFilter.getBounds();
+		final BoundingBox bounds = bboxInfo.bbox.getBounds();
 
 		// AXIS ORDER ISSUES FOR BBOX
 
@@ -190,9 +258,15 @@ public class OGCFeatFeatureSource extends ContentFeatureSource {
 		} catch (URISyntaxException e) {
 			throw new IOException(e);
 		}
-		
-		LOGGER.info(collection.getId() + " items URL\n" + url);
-		return new OGCFeatPagingCollectionItemsReader(catalogue,buildFeatureType(), url, pages);
+
+		if (bboxInfo.isSimple) {
+			LOGGER.info(collection.getId() + " items URL\n" + url);
+			return new OGCFeatPagingCollectionItemsReader(catalogue, buildFeatureType(), url, pages);
+		} else {
+			OGCFeatPagingCollectionItemsReader delegate = new OGCFeatPagingCollectionItemsReader(catalogue,
+					buildFeatureType(), url, pages);
+			return new FilteringFeatureReader<>(delegate, query.getFilter());
+		}
 	}
 
 	@Override
