@@ -10,7 +10,7 @@ Module Status
 - Initial version - Work-in-Progress
 - available As-Is 
 
-Geoserver / Geotools Version 
+Geoserver / Geotools Version  
 - gs 2.23.2
 - gt 29.2
 
@@ -27,7 +27,7 @@ Features
 - Simple Bbox filtering is based on backend OGCFeat service bbox filtering
 - Complex filtering is implemented as backend bbox filtering with FilteringFeatureReader post processing
 - Projection support is based on backend OGCFeat service CRS support
-- Supports next link paging and limiting of page size
+- Supports next link paging and limiting of page size and page count
 
 Requirements for backend OGCFeat service 
 - Backend OGCFeat service must support Landing page, conformance,collections,schema for this extension to work properly
@@ -39,18 +39,13 @@ Requirements for backend OGCFeat service
 Implementation status
 - Supports BBOX only Simple Filter
 - Supports BBOX Filter as part of a Complex Filter.
+- A BBOX filter must be supplied either as simple bbox filter or as part of a more complex filter
 
 Issues and Limitations
-- (x) A BBOX filter must be supplied either as simple bbox filter or as part of a more complex filter
 - (x) Storing a Basic Auth authorized backend fails in outer Geoserver code?
 -- landing page, /conformance /collections schema etc work just fine after
 
 To-do with some recent changes
-- (/) fetches only first page of items up to default limit at the moment
-- (/) Add some form of limit support to avoid fetch-all-of-database queries
-- (/) Add paging support with a custom GeoJSONReader to complement limit  support
-- (/) Add GitHub actions - JDK11 atm
-- (/) Reduce logging noise
 - (x) Confirm compatibility with Geoserver AXIS ORDER and reprojections
 - (x) refactor to org.geotools.api interfaces and https://github.com/geotools/geotools/wiki/Remove-OpenGIS 
 - (x) JDK17+ and other compatibility issues https://github.com/geoserver/geoserver/wiki/Jakarta-EE
