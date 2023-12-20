@@ -44,6 +44,7 @@ Implementation status
 Issues and Limitations
 - (x) Storing a Basic Auth authorized backend fails in outer Geoserver code?
 -- landing page, /conformance /collections schema etc work just fine after
+- (x) canProcess() modify canProcess to check for OGCFeat datasource type
 
 To-do with some recent changes
 - (x) Confirm compatibility with Geoserver AXIS ORDER and reprojections
