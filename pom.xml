@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.geoserver.extension</groupId>
 	<artifactId>gs-ogcfeat-datastore</artifactId>
-	<version>2.23.2</version>
+	<version>1.0.0-rc1</version>
 	<name>OGCFeat Datastore Module</name>
 	<description>A Geoserver datastore for reading GeoJSON based formats from a
 		OGCFeat service</description>
@@ -16,6 +16,7 @@
 		<gt.version>29.2</gt.version>
 		<junit.version>4.13.1</junit.version>
 		<easymock.version>4.3</easymock.version>
+		<extension-name>${project.artifactId}-${gs.version}</extension-name>
 	</properties>
 	<dependencyManagement>
 
@@ -106,6 +107,7 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<finalName>${extension-name}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
