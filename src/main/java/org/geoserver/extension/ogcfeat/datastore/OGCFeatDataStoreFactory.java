@@ -35,9 +35,9 @@ public class OGCFeatDataStoreFactory implements DataStoreFactorySpi, DataAccessF
 	public static final Param POOLMAX_PARAM = new Param("poolmax", Integer.class, "OGCFeat backend pool size", false);
 
 	public static final Param FEAT_LIMIT_PARAM = new Param("featlimit", Integer.class,
-			"OGCFeat features batch size (limit, default 1000)", false);
+			"OGCFeat features batch size limit", true);
 	public static final Param FEAT_PAGING_MAX_PARAM = new Param("batchmax", Integer.class,
-			"OGCFeat features max total pages (default 1)", false);
+			"OGCFeat features max total pages", true);
 
 	static {
 		parameterInfos.add(NS_PARAM);
@@ -53,6 +53,32 @@ public class OGCFeatDataStoreFactory implements DataStoreFactorySpi, DataAccessF
 	@Override
 	public OGCFeatDataStore createNewDataStore(Map<String, ?> params) throws UnsupportedOperationException {
 		throw new UnsupportedOperationException();
+	}
+	
+	@Override
+	public boolean canProcess(Map<String, ?> params) {
+
+		LOGGER.info("CANPROCESS");
+		try {
+			URL url = new URL((String) params.get(OGCFeatDataStoreFactory.URL_PARAM.key));
+			
+			
+			if(!url.getProtocol().startsWith("http")) {
+				LOGGER.info("URL is not http(s)");
+				return false;
+			}
+			
+
+		} catch (MalformedURLException e) {
+			LOGGER.info("URL failed");
+			return false;
+		}
+		LOGGER.info("URL OK");
+		
+			
+		
+
+		return true;
 	}
 
 	@Override
@@ -109,21 +135,7 @@ public class OGCFeatDataStoreFactory implements DataStoreFactorySpi, DataAccessF
 		return (Param[]) parameterInfos.toArray(new Param[parameterInfos.size()]);
 	}
 
-	@Override
-	public boolean canProcess(Map<String, ?> params) {
 
-		LOGGER.info("CANPROCESS");
-		try {
-			new URL((String) params.get(OGCFeatDataStoreFactory.URL_PARAM.key));
-
-		} catch (MalformedURLException e) {
-			LOGGER.info("URL failed");
-			return false;
-		}
-		LOGGER.info("URL OK");
-
-		return true;
-	}
 
 	@Override
 	public boolean isAvailable() {
