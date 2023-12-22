@@ -41,6 +41,8 @@ public class OGCFeatEPSG3067CadastreDataStoreFactoryTest {
 		params.put(OGCFeatDataStoreFactory.PASSWORD_PARAM.key, "");
 		params.put(OGCFeatDataStoreFactory.TIMEOUT_PARAM.key, "5000");
 		params.put(OGCFeatDataStoreFactory.NS_PARAM.key, "https://xml.nls.fi/example");
+		params.put(OGCFeatDataStoreFactory.FEAT_LIMIT_PARAM.key, 10);
+		params.put(OGCFeatDataStoreFactory.FEAT_PAGING_MAX_PARAM.key, 5);
 
 		OGCFeatDataStore datastore = factory.createDataStore(params);
 		try {

@@ -31,7 +31,7 @@ public class OGCFeatExampleApp {
 
 		String url = "<URL>";
 		String user = "<USER>";
-		String pass = "<PASS>";
+		String pass = "";
 		double[] bbox = new double[] { 24.46526138302816, 60.2596073383277, 24.521212182443456, 60.27770378913576 };
 
 		OGCFeatDataStoreFactory factory = new OGCFeatDataStoreFactory();
@@ -41,6 +41,8 @@ public class OGCFeatExampleApp {
 		params.put(OGCFeatDataStoreFactory.USER_PARAM.key, user);
 		params.put(OGCFeatDataStoreFactory.PASSWORD_PARAM.key, pass);
 		params.put(OGCFeatDataStoreFactory.TIMEOUT_PARAM.key, "5000");
+		params.put(OGCFeatDataStoreFactory.FEAT_LIMIT_PARAM.key, 10);
+		params.put(OGCFeatDataStoreFactory.FEAT_PAGING_MAX_PARAM.key, 5);
 		params.put(OGCFeatDataStoreFactory.NS_PARAM.key, "http://example.org/example");
 
 		OGCFeatDataStore datastore = factory.createDataStore(params);
