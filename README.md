@@ -37,8 +37,8 @@ Requirements for backend OGCFeat service
 - OGC API - Features - Part 5: Schemas - draft *partial Schema support for collections is required* 
 
 Implementation status
-- Supports BBOX only Simple Filter
-- Supports BBOX Filter as part of a Complex Filter.
+- Simple BBOX Filter is processed in backend OGCFeat 
+- Complex filter with BBOX filter is a combined effort with backend BBOX processing and post processing in gs-ogcfeat-datastore.
 - A BBOX filter must be supplied either as simple bbox filter or as part of a more complex filter
 
 Issues and Limitations
