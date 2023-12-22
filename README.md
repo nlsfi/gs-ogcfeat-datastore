@@ -26,7 +26,7 @@ Features
 - Constructs featuretypes with metadata from backend OGCFeat schema responses
 - BBOX filter must be supplied in Query
 - Simple BBOX filtering is based on backend OGCFeat service BBOX filtering
-- Complex filtering is implemented as backend OGCFet service BBOX with post processing using FilteringFeatureReader in gs-ogcfeat-datastore
+- Complex filtering is implemented as backend OGCFeat service BBOX filtering with post processing via FilteringFeatureReader in gs-ogcfeat-datastore
 - Projection support is based on backend OGCFeat service CRS support
 - Supports next link paging and limiting of page size and page count
 
