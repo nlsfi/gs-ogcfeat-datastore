@@ -18,7 +18,7 @@ License
 - This Repository contains  original code - see LICENSE
 - This repository contains modified and derived code from both GeoTools and Geoserver
 - [GeoTools license](./license/geotools/LICENSE.md)
-- [GeoServer license](./geoserver/LICENSE.md)
+- [GeoServer license](./license/geoserver/LICENSE.md)
 
 Features
 - Supports publishing OGCFeat collections from a cascaded OGCFeat service
