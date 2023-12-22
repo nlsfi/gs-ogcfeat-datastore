@@ -23,9 +23,10 @@ License
 Features
 - Supports publishing OGCFeat collections from a cascaded OGCFeat service
 - Initializes datastore with data from backend OGCFeat service metadata links (see requirements for backend service below)
-- Constructs featuretypes with metadata from backend OGCFeat schema responses 
-- Simple Bbox filtering is based on backend OGCFeat service bbox filtering
-- Complex filtering is implemented as backend bbox filtering with FilteringFeatureReader post processing
+- Constructs featuretypes with metadata from backend OGCFeat schema responses
+- BBOX filter must be supplied in Query
+- Simple BBOX filtering is based on backend OGCFeat service BBOX filtering
+- Complex filtering is implemented as backend OGCFet service BBOX with post processing using FilteringFeatureReader in gs-ogcfeat-datastore
 - Projection support is based on backend OGCFeat service CRS support
 - Supports next link paging and limiting of page size and page count
 
