@@ -36,15 +36,9 @@ Requirements for backend OGCFeat service
 - OGC API - Features - Part 3: Filtering and Common Query Language (CQL2)
 - OGC API - Features - Part 5: Schemas - draft *partial Schema support for collections is required* 
 
-Implementation status
-- Simple BBOX Filter is processed in backend OGCFeat 
-- Complex filter with BBOX filter is a combined effort with backend BBOX processing and post processing in gs-ogcfeat-datastore.
-- A BBOX filter must be supplied either as simple bbox filter or as part of a more complex filter
-
 Issues and Limitations
 - (x) Storing a Basic Auth authorized backend fails in outer Geoserver code?
 -- landing page, /conformance /collections schema etc work just fine after
-- (/) canProcess() modify canProcess to check for OGCFeat datasource type - fixed with constant parameter DBTYPE
 
 To-do with some recent changes
 - (x) Confirm compatibility with Geoserver AXIS ORDER and reprojections
