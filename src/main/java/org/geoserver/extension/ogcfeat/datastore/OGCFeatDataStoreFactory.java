@@ -26,16 +26,10 @@ public class OGCFeatDataStoreFactory implements DataStoreFactorySpi, DataAccessF
 
 	private static final List<Param> parameterInfos = new ArrayList<>(10);
 
-    public static final String DBTYPE_STRING = "OGCFeat";
+	public static final String DBTYPE_STRING = "OGCFeat";
 
-    public static final Param DBTYPE =
-            new Param(
-                    "dbtype",
-                    String.class,
-                    "Fixed value '" + DBTYPE_STRING + "'",
-                    true,
-                    DBTYPE_STRING,
-                    Collections.singletonMap(Parameter.LEVEL, "program"));
+	public static final Param DBTYPE = new Param("dbtype", String.class, "Fixed value '" + DBTYPE_STRING + "'", true,
+			DBTYPE_STRING, Collections.singletonMap(Parameter.LEVEL, "program"));
 	public static final Param NS_PARAM = new Param("namespace", String.class, "Namespace for OGCFeat type", true);
 	public static final Param URL_PARAM = new Param("url", String.class, "OGCFeat landing page", true);
 	public static final Param USER_PARAM = new Param("username", String.class, "username", false, null);
@@ -66,42 +60,47 @@ public class OGCFeatDataStoreFactory implements DataStoreFactorySpi, DataAccessF
 	public OGCFeatDataStore createNewDataStore(Map<String, ?> params) throws UnsupportedOperationException {
 		throw new UnsupportedOperationException();
 	}
-	
+
 	@Override
 	public boolean canProcess(Map<String, ?> params) {
 
 		LOGGER.info("CANPROCESS");
-		params.forEach((k,v)->{
-			LOGGER.info("CANPROCESS parmams "+k+" -> "+v);			
+		params.forEach((k, v) -> {
+			LOGGER.info("CANPROCESS parmams " + k + " -> " + v);
 		});
-		        		 
-		try {
-		    Object dbType = DBTYPE.lookUp(params);
-	        if( !DBTYPE_STRING.equals(dbType)) {
-				LOGGER.info("DBTYPE"+dbType+" NOT EQUAL TO REQUIRED "+dbType);
-	        	return false;
-	        };
 
-			URL url = new URL((String) params.get(OGCFeatDataStoreFactory.URL_PARAM.key));
-			
-			
-			if(!url.getProtocol().startsWith("http")) {
+		try {
+			Object dbType = DBTYPE.lookUp(params);
+			if (dbType == null) {
+				return false;
+			}
+			if (!DBTYPE_STRING.equals(dbType)) {
+				LOGGER.info("DBTYPE" + dbType + " NOT EQUAL TO REQUIRED " + dbType);
+				return false;
+			}
+			;
+
+			String urlStr = (String) params.get(OGCFeatDataStoreFactory.URL_PARAM.key);
+			if (urlStr == null) {
+				LOGGER.info("URL missing");
+				return false;
+			}
+
+			URL url = new URL(urlStr);
+
+			if (!url.getProtocol().startsWith("http")) {
 				LOGGER.info("URL is not http(s)");
 				return false;
 			}
-			
 
 		} catch (MalformedURLException e) {
-			LOGGER.info("URL failed "+e.toString());
+			LOGGER.info("URL failed " + e.toString());
 			return false;
 		} catch (IOException e) {
-			LOGGER.info("LOOKUP failed "+e.toString());
+			LOGGER.info("LOOKUP failed " + e.toString());
 			return false;
 		}
 		LOGGER.info("URL OK");
-		
-			
-		
 
 		return true;
 	}
@@ -159,8 +158,6 @@ public class OGCFeatDataStoreFactory implements DataStoreFactorySpi, DataAccessF
 	public Param[] getParametersInfo() {
 		return (Param[]) parameterInfos.toArray(new Param[parameterInfos.size()]);
 	}
-
-
 
 	@Override
 	public boolean isAvailable() {
