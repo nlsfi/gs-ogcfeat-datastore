@@ -24,7 +24,7 @@ Features
 - Supports publishing OGCFeat collections from a cascaded OGCFeat service
 - Initializes datastore with data from backend OGCFeat service metadata links (see requirements for backend service below)
 - Constructs featuretypes with metadata from backend OGCFeat schema responses
-- BBOX filter must be supplied in Query
+- BBOX filter MUST be supplied in Query
 - Simple BBOX filtering is based on backend OGCFeat service BBOX filtering
 - Complex filtering is implemented as backend OGCFeat service BBOX filtering with post processing via FilteringFeatureReader in gs-ogcfeat-datastore
 - Projection support is based on backend OGCFeat service CRS support
@@ -37,14 +37,12 @@ Requirements for backend OGCFeat service
 - OGC API - Features - Part 3: Filtering and Common Query Language (CQL2)
 - OGC API - Features - Part 5: Schemas - draft *partial Schema support for collections is required* 
 
-Issues and Limitations
-- (x) Storing a Basic Auth authorized backend fails in outer Geoserver code?
+Issues and Todos
+- (x) Fix: Storing a Basic Auth authorized backend fails in outer Geoserver code?
 -- landing page, /conformance /collections schema etc work just fine after
-
-To-do with some recent changes
-- (x) Confirm compatibility with Geoserver AXIS ORDER and reprojections
-- (x) refactor to org.geotools.api interfaces and https://github.com/geotools/geotools/wiki/Remove-OpenGIS 
-- (x) JDK17+ and other compatibility issues https://github.com/geoserver/geoserver/wiki/Jakarta-EE
+- (x) Todo: Confirm compatibility with Geoserver AXIS ORDER and reprojections
+- (x) Todo: refactor to org.geotools.api interfaces and https://github.com/geotools/geotools/wiki/Remove-OpenGIS 
+- (x) Todo: JDK17+ and other compatibility issues https://github.com/geoserver/geoserver/wiki/Jakarta-EE
 
 Installation 
 - Copy target/gs-ogcfeat-datastore-2.23.2.jar and swagger-models-2.2.16.jar to geoserver/WEB-INF/lib 
