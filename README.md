@@ -11,8 +11,8 @@ Module Status
 - available As-Is 
 
 Geoserver / Geotools Version  
-- gs 2.23.2
-- gt 29.2
+- gs 2.24.2
+- gt 30.2
 
 License
 - This Repository contains  original code - see [LICENSE](./LICENSE.md)
@@ -41,8 +41,9 @@ Issues and Todos
 - (x) Fix: Storing a Basic Auth authorized backend fails in outer Geoserver code?
 -- landing page, /conformance /collections schema etc work just fine after
 - (x) Todo: Confirm compatibility with Geoserver AXIS ORDER and reprojections
-- (x) Todo: refactor to org.geotools.api interfaces and https://github.com/geotools/geotools/wiki/Remove-OpenGIS 
-- (x) Todo: JDK17+ and other compatibility issues https://github.com/geoserver/geoserver/wiki/Jakarta-EE
+- (/) Done: refactor to org.geotools.api interfaces and https://github.com/geotools/geotools/wiki/Remove-OpenGIS 
+- (x) Partial: JDK17+ and other compatibility issues https://github.com/geoserver/geoserver/wiki/Jakarta-EE
+  -- github actions builds for JDK17, JDK21 
 
 Installation 
 - Copy target/gs-ogcfeat-datastore-2.23.2.jar and swagger-models-2.2.16.jar to geoserver/WEB-INF/lib 
