@@ -46,7 +46,7 @@ Issues and Todos
   -- github actions builds for JDK17, JDK21 
 
 Installation 
-- Copy target/gs-ogcfeat-datastore-2.23.2.jar and swagger-models-2.2.16.jar to geoserver/WEB-INF/lib 
+- Copy target/gs-ogcfeat-datastore-2.24.2.jar and swagger-models-2.2.16.jar to geoserver/WEB-INF/lib 
 
 Usage
 - add an OGCFeat datastore and publish layers as usual
