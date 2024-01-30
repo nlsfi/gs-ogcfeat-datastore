@@ -15,7 +15,7 @@
 		<gs.version>2.23.2</gs.version>
 		<gt.version>29.2</gt.version>
 		<junit.version>4.13.1</junit.version>
-		<easymock.version>4.3</easymock.version>
+		<easymock.version>5.2.0</easymock.version>
 	</properties>
 	<dependencyManagement>
 
