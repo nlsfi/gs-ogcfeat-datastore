@@ -14,37 +14,36 @@ import org.geoserver.extension.ogcfeat.datastore.OGCFeatDataStoreFactory;
 import org.geoserver.extension.ogcfeat.datastore.OGCFeatDataStoreFactoryInitializer;
 import org.geoserver.platform.GeoServerExtensions;
 import org.geoserver.platform.GeoServerResourceLoader;
-import org.geotools.data.DataAccessFactory;
-import org.geotools.data.DataAccessFinder;
+import org.geotools.api.data.DataAccessFactory;
+import org.geotools.api.data.DataAccessFinder;
 import org.junit.Test;
 import org.springframework.web.context.WebApplicationContext;
 import org.vfny.geoserver.util.DataStoreUtils;
 
 public class OGCFeatModuleStatusTest {
-	@Test
-	public void testInitializer() {
-		GeoServerResourceLoader resourceLoader = createMock(GeoServerResourceLoader.class);
-		expect(resourceLoader.getBaseDirectory()).andReturn(new File("target")).once();
-		replay(resourceLoader);
+    @Test
+    public void testInitializer() {
+        GeoServerResourceLoader resourceLoader = createMock(GeoServerResourceLoader.class);
+        expect(resourceLoader.getBaseDirectory()).andReturn(new File("target")).once();
+        replay(resourceLoader);
 
-		
-		DataAccessFinder.getAvailableDataStores();
-		
-		OGCFeatDataStoreFactoryInitializer initializer = new OGCFeatDataStoreFactoryInitializer();
-		initializer.setResourceLoader(resourceLoader);
+        DataAccessFinder.getAvailableDataStores();
 
-		WebApplicationContext appContext = createNiceMock(WebApplicationContext.class);
-		expect(appContext.getBeanNamesForType(DataStoreFactoryInitializer.class))
-				.andReturn(new String[] { "geopkgDataStoreFactoryInitializer" }).anyTimes();
-		expect(appContext.getBean("geopkgDataStoreFactoryInitializer")).andReturn(initializer).anyTimes();
-		replay(appContext);
+        OGCFeatDataStoreFactoryInitializer initializer = new OGCFeatDataStoreFactoryInitializer();
+        initializer.setResourceLoader(resourceLoader);
 
-		new GeoServerExtensions().setApplicationContext(appContext);
-		
-		DataAccessFactory fac = DataStoreUtils.aquireFactory(new OGCFeatDataStoreFactory().getDisplayName());
-		
-		assertNotNull(fac);
+        WebApplicationContext appContext = createNiceMock(WebApplicationContext.class);
+        expect(appContext.getBeanNamesForType(DataStoreFactoryInitializer.class))
+                .andReturn(new String[] { "geopkgDataStoreFactoryInitializer" }).anyTimes();
+        expect(appContext.getBean("geopkgDataStoreFactoryInitializer")).andReturn(initializer).anyTimes();
+        replay(appContext);
 
-		verify(resourceLoader);
-	}
+        new GeoServerExtensions().setApplicationContext(appContext);
+
+        DataAccessFactory fac = DataStoreUtils.aquireFactory(new OGCFeatDataStoreFactory().getDisplayName());
+
+        assertNotNull(fac);
+
+        verify(resourceLoader);
+    }
 }
