@@ -41,7 +41,8 @@ Issues and Todos
 - (x) Fix: Storing a Basic Auth authorized backend fails in outer Geoserver code?
 -- landing page, /conformance /collections schema etc work just fine after
 - (x) Todo: Confirm compatibility with Geoserver AXIS ORDER and reprojections
-- (x) Todo: refactor to org.geotools.api interfaces and https://github.com/geotools/geotools/wiki/Remove-OpenGIS 
+- (/) Done: refactor to org.geotools.api interfaces and https://github.com/geotools/geotools/wiki/Remove-OpenGIS
+   => branch gs2_24_2_gt30_2
 - (x) Todo: JDK17+ and other compatibility issues https://github.com/geoserver/geoserver/wiki/Jakarta-EE
 
 Installation 
