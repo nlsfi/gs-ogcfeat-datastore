@@ -66,8 +66,8 @@ public class OGCFeatExampleApp {
                 CoordinateReferenceSystem crs = CRS.decode(responseCRS);
 
                 OGCFeatFeatureSource fs = (OGCFeatFeatureSource) datastore.getFeatureSource(kv.getKey());
-                boolean b = Stream.of(fs.getCollection().getCrs()).filter(s -> OGCFeatFeatureSource.isEqualCrs(crs, s))
-                        .findFirst().isPresent();
+                Stream.of(fs.getCollection().getCrs()).filter(s -> OGCFeatFeatureSource.isEqualCrs(crs, s)).findFirst()
+                        .isPresent();
 
                 ContentFeatureCollection features = fs.getFeatures(query);
                 try (SimpleFeatureIterator iter = features.features()) {

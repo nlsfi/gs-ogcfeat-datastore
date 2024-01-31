@@ -10,8 +10,6 @@ import static org.junit.Assert.assertNotNull;
 import java.io.File;
 
 import org.geoserver.data.DataStoreFactoryInitializer;
-import org.geoserver.extension.ogcfeat.datastore.OGCFeatDataStoreFactory;
-import org.geoserver.extension.ogcfeat.datastore.OGCFeatDataStoreFactoryInitializer;
 import org.geoserver.platform.GeoServerExtensions;
 import org.geoserver.platform.GeoServerResourceLoader;
 import org.geotools.api.data.DataAccessFactory;
