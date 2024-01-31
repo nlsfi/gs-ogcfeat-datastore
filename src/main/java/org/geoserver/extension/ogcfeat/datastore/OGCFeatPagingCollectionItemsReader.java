@@ -113,8 +113,7 @@ public class OGCFeatPagingCollectionItemsReader
             return false;
         }
 
-        // TODO - most likely error - should be this.close() instead of iter.close()
-        iter.close();
+        close();
 
         try {
             page(url);
