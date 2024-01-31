@@ -4,12 +4,13 @@ import java.awt.RenderingHints.Key;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.logging.Logger;
 
 import org.geotools.api.data.DataAccessFactory;
@@ -86,7 +87,8 @@ public class OGCFeatDataStoreFactory implements DataStoreFactorySpi, DataAccessF
                 return false;
             }
 
-            URL url = new URL(urlStr);
+            URI uri = new URI(urlStr);
+            URL url = uri.toURL();
 
             if (!url.getProtocol().startsWith("http")) {
                 LOGGER.info("URL is not http(s)");
@@ -98,6 +100,9 @@ public class OGCFeatDataStoreFactory implements DataStoreFactorySpi, DataAccessF
             return false;
         } catch (IOException e) {
             LOGGER.info("LOOKUP failed " + e.toString());
+            return false;
+        } catch (URISyntaxException e) {
+            LOGGER.info("URI failed " + e.toString());
             return false;
         }
         LOGGER.info("URL OK");
@@ -136,9 +141,9 @@ public class OGCFeatDataStoreFactory implements DataStoreFactorySpi, DataAccessF
         try {
             ds = new OGCFeatDataStore(nsValue, urlValue, user, pass, poolMax, timeoutMillis, limitMax, pagingMax);
             LOGGER.info("Created " + ds);
-        } catch (MalformedURLException e) {
+        } catch (MalformedURLException | URISyntaxException e) {
             LOGGER.warning(e.toString());
-            throw e;
+            throw new IOException(e);
         }
 
         return ds;

@@ -2,6 +2,8 @@ package org.geoserver.extension.ogcfeat.datastore;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
@@ -50,12 +52,12 @@ public class OGCFeatDataStore extends ContentDataStore {
     }
 
     public OGCFeatDataStore(String ns, String url, String user, String pass, Integer poolMax, Integer timeoutMillis,
-            Integer limitMax, Integer pagingMax) throws MalformedURLException {
+            Integer limitMax, Integer pagingMax) throws MalformedURLException, URISyntaxException {
         client = new OGCFeatBackendClient(user, pass, poolMax, timeoutMillis, OGCFeatCatalogue.ACCEPTS);
         limit = limitMax;
         pages = pagingMax;
         LOGGER.info("CREATING DS " + ns + " Url " + url + " CLIENT " + client);
-        namespace = new URL(ns);
+        namespace = new URI(ns).toURL();
         catalogue = new OGCFeatCatalogue(url, client);
 
         LOGGER.info("CREATED DS " + ns + " Url " + url);
@@ -70,6 +72,7 @@ public class OGCFeatDataStore extends ContentDataStore {
                 .collect(Collectors.toList());
     }
 
+    @SuppressWarnings("rawtypes")
     @Override
     protected ContentFeatureSource createFeatureSource(ContentEntry entry) throws IOException {
         LOGGER.info("CREATING FeatureSource");

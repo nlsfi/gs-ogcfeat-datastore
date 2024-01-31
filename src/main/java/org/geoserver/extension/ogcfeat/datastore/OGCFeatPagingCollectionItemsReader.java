@@ -3,6 +3,8 @@ package org.geoserver.extension.ogcfeat.datastore;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -102,10 +104,12 @@ public class OGCFeatPagingCollectionItemsReader
 		if (!urlRef.isPresent()) {
 			return false;
 		}
-
+		
+		
 		try {
-			url = new URL(urlRef.get());
-		} catch (MalformedURLException e) {
+		    URI uri = new URI(urlRef.get());
+		    url = uri.toURL();
+		} catch (MalformedURLException | URISyntaxException e) {
 			err = e;
 			LOGGER.severe(e.toString());
 			return false;

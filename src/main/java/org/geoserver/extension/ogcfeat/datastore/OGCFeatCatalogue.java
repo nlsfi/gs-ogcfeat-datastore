@@ -2,6 +2,8 @@ package org.geoserver.extension.ogcfeat.datastore;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -124,6 +126,7 @@ public class OGCFeatCatalogue {
 
     }
 
+    @SuppressWarnings("rawtypes")
     public Optional<Schema> fetchSchema(Collection collection) throws IOException {
 
         return fetch(collection.getLinks().stream().filter(OGCFeatCatalogue::describedByLink).findFirst(),
@@ -169,7 +172,14 @@ public class OGCFeatCatalogue {
         if (link.isEmpty()) {
             return null;
         }
-        URL url = new URL(link.get().getHref());
+        
+        URL url = null;
+        try {
+            URI uri = new URI(link.get().getHref());
+            url = uri.toURL();
+        } catch (URISyntaxException e) {
+            throw new IOException(e);
+        }
 
         HTTPResponse response = client.get(url);
         T t;
