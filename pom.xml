@@ -16,7 +16,7 @@
         <gt.version>31.0</gt.version>
         <junit.version>4.13.1</junit.version>
         <easymock.version>5.2.0</easymock.version>
-	<cyclonedx.version>2.3.11</cyclonedx.version>
+	<cyclonedx.version>2.7.11</cyclonedx.version>
     </properties>
     <dependencyManagement>
 
