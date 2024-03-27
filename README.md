@@ -11,8 +11,8 @@ Module Status
 - available As-Is 
 
 Geoserver / Geotools Version  
-- gs 2.24.2
-- gt 30.2
+- gs 2.25.0
+- gt 31.0
 
 License
 - This Repository contains  original code - see [LICENSE](./LICENSE.md)
@@ -42,7 +42,6 @@ Issues and Todos
 -- landing page, /conformance /collections schema etc work just fine after
 - (x) Todo: Confirm compatibility with Geoserver AXIS ORDER and reprojections
 - (/) Done: refactor to org.geotools.api interfaces and https://github.com/geotools/geotools/wiki/Remove-OpenGIS
-   => branch gs2_24_2_gt30_2
 - (x) Partial: JDK17+ and other compatibility issues https://github.com/geoserver/geoserver/wiki/Jakarta-EE
   -- github actions builds for JDK17, JDK21 
 
