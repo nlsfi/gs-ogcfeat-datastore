@@ -10,9 +10,10 @@ Module Status
 - Initial version - Work-in-Progress
 - available As-Is 
 
-Geoserver / Geotools Version  
-- gs 2.25.0
-- gt 31.0
+Geoserver / Geotools Version in branches
+- main: gs 2.25.0, gt 31.0
+- 2.25.0: gs 2.25.0, gt 31.0
+- 2.24.2: gs 2.24.2, gt 30.2
 
 License
 - This Repository contains  original code - see [LICENSE](./LICENSE.md)
