@@ -8,18 +8,18 @@ import java.util.Map.Entry;
 import java.util.stream.Stream;
 
 import org.geoserver.extension.ogcfeat.datastore.model.Collection;
-import org.geotools.data.Query;
+import org.geotools.api.data.Query;
 import org.geotools.data.simple.SimpleFeatureIterator;
 import org.geotools.data.store.ContentFeatureCollection;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.referencing.CRS;
 import org.geotools.util.factory.GeoTools;
-import org.opengis.feature.simple.SimpleFeature;
-import org.opengis.filter.FilterFactory;
-import org.opengis.filter.spatial.BBOX;
-import org.opengis.referencing.FactoryException;
-import org.opengis.referencing.NoSuchAuthorityCodeException;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.geotools.api.feature.simple.SimpleFeature;
+import org.geotools.api.filter.FilterFactory;
+import org.geotools.api.filter.spatial.BBOX;
+import org.geotools.api.referencing.FactoryException;
+import org.geotools.api.referencing.NoSuchAuthorityCodeException;
+import org.geotools.api.referencing.crs.CoordinateReferenceSystem;
 
 public class OGCFeatEPSG3067CadastreDataStoreFactoryTest {
 
@@ -70,7 +70,7 @@ public class OGCFeatEPSG3067CadastreDataStoreFactoryTest {
 				CoordinateReferenceSystem crs = CRS.decode(responseCRS);
 
 				OGCFeatFeatureSource fs = (OGCFeatFeatureSource) datastore.getFeatureSource(kv.getKey());
-				boolean b = Stream.of(fs.getCollection().getCrs()).filter(s -> OGCFeatFeatureSource.isEqualCrs(crs, s))
+				Stream.of(fs.getCollection().getCrs()).filter(s -> OGCFeatFeatureSource.isEqualCrs(crs, s))
 						.findFirst().isPresent();
 
 				ContentFeatureCollection features = fs.getFeatures(query);

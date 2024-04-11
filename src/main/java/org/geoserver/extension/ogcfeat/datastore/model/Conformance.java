@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Conformance {
 
-	public List<String> conformsTo = new ArrayList<>();
+    public List<String> conformsTo = new ArrayList<>();
 
-
-    
 }
