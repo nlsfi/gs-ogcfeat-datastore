@@ -10,9 +10,10 @@ Module Status
 - Initial version - Work-in-Progress
 - available As-Is 
 
-Geoserver / Geotools Version  
-- gs 2.23.2
-- gt 29.2
+Geoserver / Geotools Version in branches
+- main: gs 2.25.0, gt 31.0
+- 2.25.0: gs 2.25.0, gt 31.0
+- 2.24.2: gs 2.24.2, gt 30.2
 
 License
 - This Repository contains  original code - see [LICENSE](./LICENSE.md)
@@ -42,11 +43,11 @@ Issues and Todos
 -- landing page, /conformance /collections schema etc work just fine after
 - (x) Todo: Confirm compatibility with Geoserver AXIS ORDER and reprojections
 - (/) Done: refactor to org.geotools.api interfaces and https://github.com/geotools/geotools/wiki/Remove-OpenGIS
-   => branch gs2_24_2_gt30_2
-- (x) Todo: JDK17+ and other compatibility issues https://github.com/geoserver/geoserver/wiki/Jakarta-EE
+- (x) Partial: JDK17+ and other compatibility issues https://github.com/geoserver/geoserver/wiki/Jakarta-EE
+  -- github actions builds for JDK17, JDK21 
 
 Installation 
-- Copy target/gs-ogcfeat-datastore-2.23.2.jar and swagger-models-2.2.16.jar to geoserver/WEB-INF/lib 
+- Copy target/gs-ogcfeat-datastore-2.24.2.jar and swagger-models-2.2.16.jar to geoserver/WEB-INF/lib 
 
 Usage
 - add an OGCFeat datastore and publish layers as usual
