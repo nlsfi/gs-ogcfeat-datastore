@@ -144,14 +144,18 @@ public class OGCFeatPagingCollectionItemsReader
     @Override
     public void close() {
         try {
+          if(iter != null) {
             info("Closing ITER");
             iter.close();
+          }
         } finally {
             iter = null;
             try {
-                info("Closing READER");
-                // most likely closed by iter
-                reader.close();
+                if(reader != null) {
+                  info("Closing READER");
+                  // most likely closed by iter
+                  reader.close();
+                }
             } catch (IOException e) {
                 info("CLOSE " + e.toString());
             } finally {
