@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.geoserver.extension</groupId>
     <artifactId>gs-ogcfeat-datastore</artifactId>
-    <version>2.26.0</version>
+    <version>2.26.1</version>
     <name>OGCFeat Datastore Module</name>
     <description>A Geoserver datastore for reading GeoJSON based formats from a
         OGCFeat service</description>
