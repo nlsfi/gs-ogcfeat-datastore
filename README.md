@@ -11,7 +11,8 @@ Module Status
 - available As-Is 
 
 Geoserver / Geotools Version in branches
-- main: gs 2.26.0, gt 32.0
+- main: gs 2.26.2, gt 32.2
+- 2.26.2: gs 2.26.2, gt 32.2
 - 2.26.1: gs 2.26.1, gt 32.1
 - 2.26.0: gs 2.26.0, gt 32.0
 
