@@ -11,9 +11,9 @@ Module Status
 - available As-Is 
 
 Geoserver / Geotools Version in branches
-- main: gs 2.27.1, gt 33.1
+- main: gs 2.27.2, gt 33.2
+- 2.27.2: gs 2.27.2, gt 33.2
 - 2.27.1: gs 2.27.1, gt 33.1
-- 2.27.0: gs 2.27.0, gt 33.0
 
 License
 - This Repository contains  original code - see [LICENSE](./LICENSE.md)
@@ -47,7 +47,7 @@ Issues and Todos
   -- github actions builds for JDK17, JDK21 
 
 Installation 
-- Copy target/gs-ogcfeat-datastore-2.24.2.jar and swagger-models-2.2.16.jar to geoserver/WEB-INF/lib 
+- Copy target/gs-ogcfeat-datastore-2.27.2.jar and swagger-models-2.2.16.jar to geoserver/WEB-INF/lib 
 
 Usage
 - add an OGCFeat datastore and publish layers as usual
